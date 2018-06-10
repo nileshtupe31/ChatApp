@@ -29,8 +29,7 @@ export const loginUser = (email, password) => {
     const emailAddress = `${email}@chatapp.com`;
     firebase.auth().signInWithEmailAndPassword(emailAddress, password)
     .then(user => {
-      onCreateNewUser(user);
-      onLoginSuccess(user, dispatch);
+       onLoginSuccess(user, dispatch);
     })
     .catch(() => {
       firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
@@ -45,7 +44,7 @@ export const loginUser = (email, password) => {
 
 const onCreateNewUser = (user) => {
   const phone = user.user.email.replace('@chatapp.com', '');
-  firebase.database().ref(`/chatApp/users/${user.user.uid}/chats`)
+  firebase.database().ref(`/chatApp/users/${phone}/chats`)
   .push({ phone });
 };
 

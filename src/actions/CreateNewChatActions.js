@@ -22,7 +22,8 @@ export const fetchChat = () => {
     return (dispatch) => {
       const { currentUser } = firebase.auth();
       debugger;
-      firebase.database().ref(`/chatApp/users/${currentUser.uid}/chats`)
+      const phone = currentUser.email.replace('@chatapp.com', '');
+      firebase.database().ref(`/chatApp/users/${phone}/chats`)
       .on('value', snapshot => {
         dispatch({
           type: CHAT_FETCH,
@@ -38,11 +39,17 @@ export const createNewChat = (number, textMsg, uid) => {
   return (dispatch) => {
     const { currentUser } = firebase.auth();
     debugger;
-    firebase.database().ref(`/chatApp/users/${currentUser.uid}/chats/${uid}/chat`)
+    const phone = currentUser.email.replace('@chatapp.com', '');
+    firebase.database().ref(`/chatApp/users/${phone}/chats/${number}/chat`)
     .push({ number, textMsg })
     .then(() => {
-      dispatch({
-        type: ON_CREATE_SUCCESS
+      debugger;
+      firebase.database().ref(`/chatApp/users/${number}/chats/${phone}/chat`)
+      .push({ number, textMsg })
+      .then(() => {
+        dispatch({
+          type: ON_CREATE_SUCCESS
+        });
       });
     });
   };
