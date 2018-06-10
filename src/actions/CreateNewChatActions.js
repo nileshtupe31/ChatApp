@@ -41,11 +41,11 @@ export const createNewChat = (number, textMsg, uid) => {
     debugger;
     const phone = currentUser.email.replace('@chatapp.com', '');
     firebase.database().ref(`/chatApp/users/${phone}/chats/${number}/chat`)
-    .push({ number, textMsg })
+    .push({ phone, textMsg })
     .then(() => {
       debugger;
       firebase.database().ref(`/chatApp/users/${number}/chats/${phone}/chat`)
-      .push({ number, textMsg })
+      .push({ phone, textMsg })
       .then(() => {
         dispatch({
           type: ON_CREATE_SUCCESS
