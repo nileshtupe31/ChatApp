@@ -6,5 +6,6 @@ export const USER_LOGGING_IN = 'logging_in';
 
 export const PHONE_NUMBER = 'phone_number';
 export const START_TEXT = 'start_text';
-export const CHAT_FETCH = 'chat_fetch';
 export const ON_CREATE_SUCCESS = 'on_success';
+
+export const FETCH_CHAT_LIST = 'fetch_chat_list';

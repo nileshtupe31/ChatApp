@@ -1,19 +1,14 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import { phoneNumberChanged, messageTextChanged, createNewChat, fetchChat } from '../actions';
+import { phoneNumberChanged, messageTextChanged, createNewChat } from '../actions';
 
 
 class CreateNewChatForm extends Component {
 
-  componentWillMount() {
-    this.props.fetchChat();
-  }
-
   onButtonPress() {
     debugger;
-    this.props.createNewChat(this.props.phone, this.props.textMsg, this.props.chat[0].uid);
+    this.props.createNewChat(this.props.phone, this.props.textMsg);
   }
 
   render() {
@@ -47,20 +42,14 @@ class CreateNewChatForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const chatsArray = _.map(state.newChat.chat, (val, uid) => {
-    return { ...val, uid };
-  });
-
   return {
     phone: state.newChat.phoneNumber,
     textMsg: state.newChat.text,
-    chat: chatsArray
   };
 };
 
 export default connect(mapStateToProps, {
   phoneNumberChanged,
   messageTextChanged,
-  createNewChat,
-  fetchChat
+  createNewChat
 })(CreateNewChatForm);
