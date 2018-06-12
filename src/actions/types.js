@@ -11,3 +11,5 @@ export const ON_CREATE_SUCCESS = 'on_success';
 export const FETCH_CHAT_LIST = 'fetch_chat_list';
 export const FETCHING_CHAT_LIST = 'fetching_chat_list';
 export const ON_FETCH_ERROR = 'on_fetch_error';
+
+export const SELECT_CHAT = 'selectchat';
