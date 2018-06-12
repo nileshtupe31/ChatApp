@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, View, Text } from 'react-native';
 import { fetchChatList } from '../actions';
 import { ChatListItem } from './ChatListItem';
 import { Spinner } from './common';
@@ -11,16 +11,14 @@ class ChatListForm extends Component {
   componentWillMount() {
     this.props.fetchChatList();
   }
-
+  
   renderRow(chatItem) {
-    debugger;
     return (
       <ChatListItem chatItem={chatItem} />
     );
   }
 
   render() {
-    debugger;
     if (this.props.chatList.length > 0) {
       const ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -33,8 +31,16 @@ class ChatListForm extends Component {
         />
       );
     }
+    if (this.props.isLoading === true) {
+      return (
+        <Spinner />
+      );
+    }
     return (
-      <Spinner />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text> Its lonely here</Text>
+          <Text> Tap on New chat and talk to someone !!!</Text>
+      </View>
     );
   }
 }
@@ -44,8 +50,13 @@ export const mapStateToProps = (state) => {
       return { ...val, uid };
   });
 
+  if (chatList.length > 0) {
+    console.log(chatList);
+  }
+
   return {
-    chatList
+    chatList,
+    isLoading: state.chatList.isLoading
   };
 };
 

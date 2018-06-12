@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
-import { PHONE_NUMBER, START_TEXT, CHAT_FETCH, ON_CREATE_SUCCESS } from './types';
+import { PHONE_NUMBER, START_TEXT, ON_CREATE_SUCCESS } from './types';
 
 export const phoneNumberChanged = (number) => {
   return {
@@ -29,7 +29,7 @@ export const createNewChat = (number, textMsg) => {
       firebase.database().ref(`/chatApp/users/${number}/chats/${phone}/chat`)
       .push({ phone, textMsg })
       .then(() => {
-        Actions.pop();
+        Actions.pop({ refresh: true });
         dispatch({
           type: ON_CREATE_SUCCESS
         });
