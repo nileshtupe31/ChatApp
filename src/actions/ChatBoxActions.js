@@ -1,5 +1,7 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import { SELECT_CHAT } from './types';
+
 
 export const selectChat = (number) => {
   return (dispatch) => {
@@ -10,7 +12,9 @@ export const selectChat = (number) => {
 
     dispatch({
       type: SELECT_CHAT,
-      payload: path
+      payload: { path, number }
     });
+
+    Actions.chatBox();
   };
 };

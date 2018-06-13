@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView, View, Text } from 'react-native';
 import { fetchChatList } from '../actions';
-import { ChatListItem } from './ChatListItem';
+import ChatListItem from './ChatListItem';
 import { Spinner } from './common';
 
 class ChatListForm extends Component {
@@ -11,7 +11,7 @@ class ChatListForm extends Component {
   componentWillMount() {
     this.props.fetchChatList();
   }
-  
+
   renderRow(chatItem) {
     return (
       <ChatListItem chatItem={chatItem} />
