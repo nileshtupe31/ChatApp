@@ -6,8 +6,12 @@ import { phoneNumberChanged, messageTextChanged, createNewChat } from '../action
 
 class CreateNewChatForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.props.phoneNumberChanged(props.defaultNumber);
+}
+
   onButtonPress() {
-    debugger;
     this.props.createNewChat(this.props.phone, this.props.textMsg);
   }
 

@@ -13,3 +13,6 @@ export const FETCHING_CHAT_LIST = 'fetching_chat_list';
 export const ON_FETCH_ERROR = 'on_fetch_error';
 
 export const SELECT_CHAT = 'selectchat';
+export const FETCHING_CHAT = 'fetching_chat';
+export const FETCH_CHAT = 'fetch_chat';
+export const ON_FETCH_CHAT_ERROR = 'on_fetch_chat_error';
