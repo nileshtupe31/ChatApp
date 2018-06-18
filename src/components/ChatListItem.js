@@ -7,17 +7,25 @@ import { selectChat } from '../actions';
 
 class ChatListItem extends Component {
 
+  onCellTap() {
+    debugger;
+    this.props.selectChat(this.props.chatItem.uid);
+  }
+
   render() {
     const chat = _.map(this.props.chatItem.chat, (val, uid) => {
       return { ...val, uid };
     });
 
+    if (chat.length <= 0) {
+      return (
+          <View />
+      );
+    }
+
     return (
       <TouchableWithoutFeedback
-        onPress={() => {
-          console.log('In touchable feedback');
-          this.props.selectChat(this.props.chatItem.uid);
-        }}
+        onPress={this.onCellTap.bind(this)}
       >
         <View>
           <Card>

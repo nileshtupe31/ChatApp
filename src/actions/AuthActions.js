@@ -42,12 +42,6 @@ export const loginUser = (email, password) => {
   };
 };
 
-const onCreateNewUser = (user) => {
-  const phone = user.user.email.replace('@chatapp.com', '');
-  firebase.database().ref(`/chatApp/users/${phone}/chats`)
-  .push({ phone });
-};
-
 const onLoginFailure = (dispatch, error) => {
   dispatch({
     type: LOGIN_USER_FAILURE,

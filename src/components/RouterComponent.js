@@ -27,7 +27,10 @@ class RouterComponent extends React.Component {
                 component={ChatBoxForm}
                 title={this.props.title}
                 rightTitle="Chat"
-                onRight={() => { Actions.newChat({ defaultNumber: this.props.title }); }}
+                onRight={() => {
+                  debugger;
+                  Actions.newChat({ defaultNumber: this.props.title }); 
+                }}
               />
               <Scence
                 key="newChat"
